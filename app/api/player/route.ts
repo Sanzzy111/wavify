@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "generated/prisma";
 const prisma = new PrismaClient();
 
 // POST /api/player/play — increment play count & simpan history

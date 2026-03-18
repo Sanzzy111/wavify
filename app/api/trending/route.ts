@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getTrending } from "@/lib/fallback";
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "generated/prisma";
 const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {

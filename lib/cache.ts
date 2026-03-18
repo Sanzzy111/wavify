@@ -3,8 +3,7 @@
  * Strategy: Upstash Redis (primary) → PostgreSQL/Supabase (fallback)
  */
 
-import { PrismaClient } from "@prisma/client/edge";
-const prisma = new PrismaClient();
+import { PrismaClient } from "generated/prisma";
 
 // TTL constants (in seconds)
 export const TTL = {
