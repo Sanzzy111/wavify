@@ -1,4 +1,4 @@
-# 🎵 Spotify Clone — Backend Setup
+# 🎵 Spotify Clone — Backend Setup 
 
 ## Tech Stack
 - **Framework**: Next.js 14 (App Router)
@@ -110,3 +110,6 @@ Lirik:    Cache → Musixmatch
 - **Cache TTL**: search 1 jam, trending 6 jam, lirik 1 tahun
 - Kalau Upstash limit habis, cache otomatis fallback ke PostgreSQL
 - Trending "internal" makin akurat seiring bertambahnya user
+
+
+- With SanCrypt - Sanzen - Sanzzy 
