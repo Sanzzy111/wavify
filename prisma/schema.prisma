@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Song {
+  id             String        @id
+  title          String
+  artist         String
+  album          String?
+  cover          String?
+  duration       Int?
+  lastfmUrl      String?
+  deezerUrl      String?
+  deezerPreview  String?
+  soundcloudUrl  String?
+  spotifyId      String?
+  playCount      Int           @default(0)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  playHistory    PlayHistory[]
+  playlistSongs  PlaylistSong[]
+}
+
+model Playlist {
+  id        String         @id @default(cuid())
+  name      String
+  cover     String?
+  userId    String
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  songs     PlaylistSong[]
+}
+
+model PlaylistSong {
+  id         String   @id @default(cuid())
+  playlistId String
+  songId     String
+  order      Int
+  addedAt    DateTime @default(now())
+  playlist   Playlist @relation(fields: [playlistId], references: [id], onDelete: Cascade)
+  song       Song     @relation(fields: [songId], references: [id], onDelete: Cascade)
+
+  @@unique([playlistId, songId])
+}
+
+model PlayHistory {
+  id       String   @id @default(cuid())
+  userId   String
+  songId   String
+  playedAt DateTime @default(now())
+  song     Song     @relation(fields: [songId], references: [id])
+}
+
+model Cache {
+  key       String   @id
+  value     String
+  expiredAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([expiredAt])
+}
